@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="d56a0887-81b5-4d29-b8c6-c6eab59f3cfd" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="anypointdemo-getFlow" doc:id="0c4bc22a-fbee-45fb-bfab-de4b0ce29247" >
+		<http:listener doc:name="GET Listener" doc:id="ff2deeb7-0ee2-4ae9-b1f7-786d4caee708" config-ref="HTTP_Listener_config" path="/hello" allowedMethods="GET"/>
+		<logger level="INFO" doc:name="Logger" doc:id="8c8ed040-1d17-4ba4-80bd-ae79247c1c52" message="** GET Request **"/>
+		<set-payload value='{"message":"hello"}' doc:name="Set Payload" doc:id="b3059d1b-fec2-4b85-ad61-9f1037c2171f" />
+	</flow>
+	<flow name="anypointdemo-postFlow" doc:id="8d87b38f-f14a-4439-b9c8-7f872a277d33" >
+		<http:listener doc:name="POST Listener" doc:id="d123083b-93cc-4124-9199-cb5b6bea36d2" config-ref="HTTP_Listener_config" path="/hello" allowedMethods="POST" />
+		<logger level="INFO" doc:name="Logger" doc:id="5e6cbe66-9bc6-426e-a68c-b1a37b3110b5" message="** POST Request **" />
+	</flow>
+</mule>
